@@ -13,4 +13,9 @@ router.post(
   productControllers.createProduct
 );
 
+// Get all products with pagination
+router.get("/products", productControllers.getAllProducts);
+
+// Filter products by category
+router.get("/filter-products", productControllers.filterProducts);
 export default router;
