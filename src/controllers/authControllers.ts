@@ -18,7 +18,7 @@ export const registerUser = async (req: Request, res: Response) => {
       });
     }
 
-    const { email, password, username } = validationResponse.data;
+    const { email, password, username, phone } = validationResponse.data;
 
     // check if user already exists
     const existingUser = await User.findOne({ email });
@@ -42,6 +42,7 @@ export const registerUser = async (req: Request, res: Response) => {
       email,
       password: hashedPassword,
       username,
+      phone,
     });
 
     res
