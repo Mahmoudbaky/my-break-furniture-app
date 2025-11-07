@@ -24,11 +24,11 @@ const envSchema = z.object({
   // UPLOADTHING_TOKEN: z.string(),
 
   // // Authentication
-  // JWT_SECRET: z.string(),
-  // JWT_EXPIRES_IN: z.string().default("24h"),
-  // COOKIE_EXPIRES_IN: z.string().default("90d"),
+  JWT_SECRET: z.string(),
+  JWT_EXPIRES_IN: z.string().default("24h"),
+  COOKIE_EXPIRES_IN: z.string().default("90d"),
 
-  // TAX_RATE: z.string().default("0.15"),
+  TAX_RATE: z.string().default("0.15"),
 
   // // Email
   // EMAIL_SERVICE: z.string().optional(),
