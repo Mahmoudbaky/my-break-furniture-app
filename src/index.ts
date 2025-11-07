@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import express from "express";
 import cors from "cors";
-import { productRoutes, categoryRoutes } from "./routes";
+import { productRoutes, categoryRoutes, cartRoutes } from "./routes";
 import { env } from "./config/env.js";
 
 dotenv.config();
@@ -64,6 +64,7 @@ app.use(express.json());
 // API routes
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/cart", cartRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {

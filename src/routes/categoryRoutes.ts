@@ -12,3 +12,5 @@ router.post(
   //   authorize("admin"),
   categoryControllers.createCategory
 );
+
+export default router;
