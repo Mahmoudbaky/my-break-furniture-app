@@ -54,6 +54,7 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 
+// Remove _id and __v
 productSchema.set("toJSON", {
   transform: (doc: any, ret: Record<string, any>) => {
     delete ret._id;

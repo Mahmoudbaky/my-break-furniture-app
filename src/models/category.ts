@@ -23,6 +23,7 @@ const categorySchema = new Schema(
   { timestamps: true }
 );
 
+// Remove _id and __v
 categorySchema.set("toJSON", {
   transform: (doc: any, ret: Record<string, any>) => {
     delete ret._id;

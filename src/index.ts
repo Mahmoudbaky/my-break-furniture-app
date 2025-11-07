@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import express from "express";
 import cors from "cors";
-import { productRoutes } from "./routes";
+import { productRoutes, categoryRoutes } from "./routes";
 import { env } from "./config/env.js";
 
 dotenv.config();
@@ -63,6 +63,7 @@ app.use(express.json());
 
 // API routes
 app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
@@ -77,7 +78,7 @@ app.use((req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log(`Server is running on port ${3000}`);
+  console.log(`http://localhost:3000`);
 });
 
 export default app;
