@@ -7,6 +7,7 @@ import {
   categoryRoutes,
   cartRoutes,
   authRoutes,
+  reservationRoutes,
 } from "./routes";
 import { env } from "./config/env.js";
 
@@ -71,7 +72,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/cart", cartRoutes);
-
+app.use("/api/reservations", reservationRoutes);
 // Health check endpoint
 app.get("/api/health", (req, res) => {
   res.json({ status: "OK", message: "Server is healthy" });

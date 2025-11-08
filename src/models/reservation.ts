@@ -32,11 +32,13 @@ const reservationSchema = new Schema(
       required: true,
       min: 0,
     },
-
-    status: {
+    name: {
       type: String,
-      enum: ["waiting", "confirmed", "completed", "cancelled"],
-      default: "waiting",
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
     },
     notes: {
       type: String,
@@ -44,6 +46,11 @@ const reservationSchema = new Schema(
     shippingAddress: {
       type: Schema.Types.Mixed,
       required: true,
+    },
+    status: {
+      type: String,
+      enum: ["waiting", "confirmed", "completed", "cancelled"],
+      default: "waiting",
     },
   },
   { timestamps: true }

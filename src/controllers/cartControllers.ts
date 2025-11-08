@@ -226,3 +226,44 @@ export const removeFromCart = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const clearCart = async (req: Request, res: Response) => {
+  try {
+    const decoded = extractTokenAndDecode(req as Request);
+
+    if (!decoded) {
+      return res.status(401).json({
+        message: "Not authorized to access this route",
+      });
+    }
+
+    const userId = decoded.id;
+
+    const cart = await Cart.findOne({ user: userId });
+
+    if (!cart) {
+      return res.status(200).json({
+        success: true,
+        message: "Cart is already empty",
+      });
+    }
+
+    const emptyArray: any = [];
+
+    cart.items = emptyArray;
+    cart.totalAmount = 0;
+    await cart.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Cart cleared successfully",
+      data: cart,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error clearing cart",
+      error,
+    });
+  }
+};

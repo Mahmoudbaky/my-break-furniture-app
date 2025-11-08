@@ -4,8 +4,8 @@ import Reservation from "../models/reservation.js";
 import { Request, Response } from "express";
 import { extractTokenAndDecode } from "../lib/utils.js";
 
-// Create order from cart
-export const createOrder = async (req: Request, res: Response) => {
+// Create reservation from cart
+export const createReservation = async (req: Request, res: Response) => {
   try {
     const decoded = extractTokenAndDecode(req as Request);
 
@@ -16,7 +16,7 @@ export const createOrder = async (req: Request, res: Response) => {
     }
 
     const userId = decoded.id;
-    const { shippingAddress, paymentMethod } = req.body;
+    const { name, phone, notes, shippingAddress } = req.body;
 
     if (!shippingAddress) {
       return res.status(400).json({
@@ -58,13 +58,12 @@ export const createOrder = async (req: Request, res: Response) => {
     const order = new Reservation({
       user: userId,
       items: orderItems,
-      subtotal: cart.subtotal,
-      shippingFee: cart.shippingFee,
-      taxAmount: cart.taxAmount,
       totalAmount: cart.totalAmount,
       shippingAddress,
-      paymentMethod,
-      status: "pending",
+      name,
+      phone,
+      notes,
+      status: "waiting",
     });
 
     await order.save();

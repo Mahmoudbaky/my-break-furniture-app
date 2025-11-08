@@ -37,4 +37,10 @@ router.delete(
   cartControllers.removeFromCart
 );
 
+router.delete(
+  "/clear-cart", //   protect,
+  //   authorize("user"),
+  cartControllers.clearCart
+);
+
 export default router;
