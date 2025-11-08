@@ -90,13 +90,15 @@ export const login = async (req: Request, res: Response) => {
     };
     res.cookie("jwt", token, cookieOptions);
 
-    // Remove password from response
-    const { password: _, ...userWithoutPassword } = user;
-
     res.status(200).json({
       message: "Login successful",
       token,
-      user: userWithoutPassword,
+      user: {
+        email: user.email,
+        username: user.username,
+        phone: user.phone,
+        role: user.role,
+      },
     });
   } catch (error) {
     console.error("Login error:", error);

@@ -2,7 +2,12 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import express from "express";
 import cors from "cors";
-import { productRoutes, categoryRoutes, cartRoutes } from "./routes";
+import {
+  productRoutes,
+  categoryRoutes,
+  cartRoutes,
+  authRoutes,
+} from "./routes";
 import { env } from "./config/env.js";
 
 dotenv.config();
@@ -62,6 +67,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // API routes
+app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/cart", cartRoutes);

@@ -13,4 +13,6 @@ router.post(
   categoryControllers.createCategory
 );
 
+router.get("/all-categories", categoryControllers.getAllCategories);
+
 export default router;

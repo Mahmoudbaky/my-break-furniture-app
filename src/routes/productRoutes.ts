@@ -14,7 +14,7 @@ router.post(
 );
 
 // Get all products with pagination
-router.get("/products", productControllers.getAllProducts);
+router.get("/all-products", productControllers.getAllProducts);
 
 // Filter products by category
 router.get("/filter-products", productControllers.filterProducts);

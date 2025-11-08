@@ -42,3 +42,21 @@ export const createCategory = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getAllCategories = async (req: Request, res: Response) => {
+  try {
+    const categories = await Category.find();
+    res.status(200).json({
+      success: true,
+      message: "categories fetched",
+      data: categories,
+    });
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error,
+    });
+  }
+};

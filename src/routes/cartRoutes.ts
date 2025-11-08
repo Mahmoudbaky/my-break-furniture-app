@@ -5,22 +5,6 @@ import * as cartControllers from "../controllers/cartControllers.js";
 
 export const router = express.Router();
 
-// Add item to cart
-router.post(
-  "/add-item",
-  //   protect,
-  //   authorize("user"),
-  cartControllers.addToCart
-);
-
-// Remove item from cart
-router.delete(
-  "/remove-item/:itemId",
-  //   protect,
-  //   authorize("user"),
-  cartControllers.removeFromCart
-);
-
 // Get user's cart
 router.get(
   "/my-cart",
@@ -29,12 +13,28 @@ router.get(
   cartControllers.getCart
 );
 
+// Add item to cart
+router.post(
+  "/add-item",
+  //   protect,
+  //   authorize("user"),
+  cartControllers.addToCart
+);
+
 // update item quantity in cart
 router.put(
-  "/update-item/:itemId",
+  "/update-item",
   //   protect,
   //   authorize("user"),
   cartControllers.updateCartItem
+);
+
+// Remove item from cart
+router.delete(
+  "/remove-item/:productId",
+  //   protect,
+  //   authorize("user"),
+  cartControllers.removeFromCart
 );
 
 export default router;
