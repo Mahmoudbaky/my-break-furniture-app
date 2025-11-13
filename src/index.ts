@@ -8,7 +8,7 @@ import {
   cartRoutes,
   authRoutes,
   reservationRoutes,
-} from "./routes";
+} from "./routes/index.js";
 import { env } from "./config/env.js";
 
 dotenv.config();

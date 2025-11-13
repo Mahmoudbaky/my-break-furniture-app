@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
-import { env } from "../config/env.js";
 
 const cartSchema = new Schema(
   {
