@@ -93,3 +93,61 @@ export const createReservation = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getAllReservations = async (req: Request, res: Response) => {
+  try {
+    const reservations = await Reservation.find()
+      .populate("user", "email")
+      .populate("items.product", "name price image");
+
+    res.status(200).json({
+      success: true,
+      message: "Reservations retrieved successfully",
+      data: reservations,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error fetching reservations",
+      error,
+    });
+  }
+};
+
+export const updateReservationStatus = async (req: Request, res: Response) => {
+  try {
+    const { reservationId } = req.params;
+    const { status } = req.body;
+
+    const validStatuses = ["waiting", "confirmed", "completed", "cancelled"];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid status",
+      });
+    }
+
+    const reservation = await Reservation.findById(reservationId);
+    if (!reservation) {
+      return res.status(404).json({
+        success: false,
+        message: "Reservation not found",
+      });
+    }
+
+    reservation.status = status;
+    reservation.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Reservation status updated successfully",
+      data: reservation,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error updating reservation status",
+      error,
+    });
+  }
+};
