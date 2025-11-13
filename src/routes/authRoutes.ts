@@ -1,5 +1,4 @@
 import express from "express";
-// import { protect, authorize } from "../middleware/auth.js";
 
 import * as authControllers from "../controllers/authControllers.js";
 
