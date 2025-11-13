@@ -4,3 +4,4 @@ export { default as cartRoutes } from "./cartRoutes.js";
 export { default as authRoutes } from "./authRoutes.js";
 export { default as reservationRoutes } from "./reservationRoutes.js";
 export { default as userRoutes } from "./userRoutes.js";
+export { default as messageRoutes } from "./messageRoutes.js";

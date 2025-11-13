@@ -9,6 +9,7 @@ import {
   authRoutes,
   reservationRoutes,
   userRoutes,
+  messageRoutes,
 } from "./routes/index.js";
 import { env } from "./config/env.js";
 
@@ -75,6 +76,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/reservations", reservationRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/messages", messageRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
