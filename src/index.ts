@@ -10,6 +10,8 @@ import {
   reservationRoutes,
   userRoutes,
   messageRoutes,
+  heroContentRoutes,
+  mainContentRoutes,
 } from "./routes/index.js";
 import { env } from "./config/env.js";
 
@@ -77,6 +79,8 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/reservations", reservationRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/hero-content", heroContentRoutes);
+app.use("/api/main-content", mainContentRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {

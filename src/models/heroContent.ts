@@ -22,10 +22,6 @@ const heroContentSchema = new Schema({
     type: String,
     required: true,
   },
-  isActive: {
-    type: Boolean,
-    required: true,
-  },
 });
 
 export default mongoose.model("HeroContent", heroContentSchema);
