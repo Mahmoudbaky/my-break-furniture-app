@@ -103,7 +103,7 @@ export const addToCart = async (req: Request, res: Response) => {
 
     // Populate and return updated cart
     const updatedCart = await Cart.findById(cart._id)
-      .populate("items.product", "name price image")
+      .populate("items.product", "name price images")
       .exec();
 
     res.status(200).json({
