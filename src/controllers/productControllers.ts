@@ -76,6 +76,7 @@ export const filterProducts = async (req: Request, res: Response) => {
     const filters: any = {};
 
     if (category) filters.category = category;
+    if (category === "all") delete filters.category;
 
     const skip = (Number(page) - 1) * Number(limit);
 
