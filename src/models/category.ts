@@ -24,13 +24,13 @@ const categorySchema = new Schema(
 );
 
 // Remove _id and __v
-categorySchema.set("toJSON", {
-  transform: (doc: any, ret: Record<string, any>) => {
-    delete ret._id;
-    delete ret.__v;
-    return ret;
-  },
-});
+// categorySchema.set("toJSON", {
+//   transform: (doc: any, ret: Record<string, any>) => {
+//     delete ret._id;
+//     delete ret.__v;
+//     return ret;
+//   },
+// });
 
 const Category = mongoose.model("Category", categorySchema);
 
