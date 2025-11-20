@@ -32,7 +32,11 @@ const app = express();
 // CORS configuration
 const corsOptions = {
   origin: function (origin: string | undefined, callback: Function) {
-    const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
+    const allowedOrigins = [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://127.0.0.1:5173",
+    ];
 
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
