@@ -23,4 +23,8 @@ router.get(
 
 // Filter products by category
 router.get("/filter-products", productControllers.filterProducts);
+
+// Get a single product by ID
+router.get("/get-product/:id", productControllers.getProductById);
+
 export default router;
