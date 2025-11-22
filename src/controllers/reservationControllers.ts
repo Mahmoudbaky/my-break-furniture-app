@@ -3,6 +3,7 @@ import Product from "../models/product.js";
 import Reservation from "../models/reservation.js";
 import { Request, Response } from "express";
 import { extractTokenAndDecode } from "../lib/utils.js";
+import { reservationStatusUpdateSchema } from "../validators/reservationValidators.js";
 
 // Create reservation from cart
 export const createReservation = async (req: Request, res: Response) => {
@@ -100,10 +101,22 @@ export const getAllReservations = async (req: Request, res: Response) => {
       .populate("user", "email")
       .populate("items.product", "name price image");
 
+    // Map through reservations and add items count
+    const reservationsWithCount = reservations.map((reservation) => {
+      const itemsCount = reservation.items.reduce(
+        (acc, item) => acc + item.quantity,
+        0
+      );
+      return {
+        ...reservation.toObject(),
+        itemsCount,
+      };
+    });
+
     res.status(200).json({
       success: true,
       message: "Reservations retrieved successfully",
-      data: reservations,
+      data: reservationsWithCount,
     });
   } catch (error) {
     res.status(500).json({
@@ -117,15 +130,7 @@ export const getAllReservations = async (req: Request, res: Response) => {
 export const updateReservationStatus = async (req: Request, res: Response) => {
   try {
     const { reservationId } = req.params;
-    const { status } = req.body;
-
-    const validStatuses = ["waiting", "confirmed", "completed", "cancelled"];
-    if (!validStatuses.includes(status)) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid status",
-      });
-    }
+    const status = reservationStatusUpdateSchema.parse(req.body).status;
 
     const reservation = await Reservation.findById(reservationId);
     if (!reservation) {
