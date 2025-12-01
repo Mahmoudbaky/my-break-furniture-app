@@ -20,6 +20,10 @@ const messageSchema = new Schema(
       type: String,
       required: true,
     },
+    read: {
+      type: Boolean,
+      default: false, // Default value for read status
+    },
   },
   { timestamps: true }
 );

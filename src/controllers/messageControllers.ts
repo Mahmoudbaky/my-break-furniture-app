@@ -51,3 +51,60 @@ export const getAllMessages = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const markMessageAsRead = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const message = await Message.findByIdAndUpdate(
+      id,
+      { read: true },
+      { new: true }
+    );
+
+    if (!message) {
+      return res.status(404).json({
+        success: false,
+        message: "Message not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Message marked as read successfully",
+      data: message,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error marking message as read",
+      error,
+    });
+  }
+};
+
+export const deleteMessage = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const message = await Message.findByIdAndDelete(id);
+
+    if (!message) {
+      return res.status(404).json({
+        success: false,
+        message: "Message not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Message deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error deleting message",
+      error,
+    });
+  }
+};
