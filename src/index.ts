@@ -14,6 +14,8 @@ import {
   mainContentRoutes,
 } from "./routes/index.js";
 import { env } from "./config/env.js";
+import { createRouteHandler } from "uploadthing/express";
+import { uploadRouter } from "./config/uploadthing.js";
 
 dotenv.config();
 
@@ -85,6 +87,15 @@ app.use("/api/users", userRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/hero-content", heroContentRoutes);
 app.use("/api/main-content", mainContentRoutes);
+
+// Uploadthing routes
+app.use(
+  "/api/uploadthing",
+  createRouteHandler({
+    router: uploadRouter,
+    config: { token: env.UPLOADTHING_TOKEN },
+  })
+);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {

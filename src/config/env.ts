@@ -14,14 +14,11 @@ const envSchema = z.object({
 
   // Database - Support both development and production URLs
   MONGODB_URI: z.string(),
-  // MONGODB_USER: z.string().optional(),
-  // MONGODB_PASSWORD: z.string().optional(),
-  // MONGODB_PROJECT: z.string().optional(),
 
   // SWAGGER_BASE_URL: z.string().default("http://localhost:3000/api"),
 
   // // Uploadthing
-  // UPLOADTHING_TOKEN: z.string(),
+  UPLOADTHING_TOKEN: z.string(),
 
   // // Authentication
   JWT_SECRET: z.string(),
@@ -37,7 +34,7 @@ const envSchema = z.object({
   // EMAIL_FROM: z.string().optional(),
 
   // // App settings
-  // APP_NAME: z.string().default("DevWave E-commerce"),
+  APP_NAME: z.string().default("My Break Furniture"),
 });
 
 // Validate environment variables
