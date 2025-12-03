@@ -27,4 +27,20 @@ router.get("/filter-products", productControllers.filterProducts);
 // Get a single product by ID
 router.get("/get-product/:id", productControllers.getProductById);
 
+// Update a product by ID (only for ADMIN and MANAGER roles)
+router.put(
+  "/update-product/:id",
+  protect,
+  authorize("admin"),
+  productControllers.updateProduct
+);
+
+// Delete a product by ID (only for ADMIN and MANAGER roles)
+router.delete(
+  "/delete-product/:id",
+  protect,
+  authorize("admin"),
+  productControllers.deleteProduct
+);
+
 export default router;
