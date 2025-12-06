@@ -1,4 +1,4 @@
-import contactUsContent from "../models/contactUsContent";
+import contactUsContent from "../models/contactUsContent.js";
 import { Request, Response } from "express";
 
 // Get all contact us content

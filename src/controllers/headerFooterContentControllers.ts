@@ -1,4 +1,4 @@
-import HeaderFooterContent from "../models/headerFooterContent";
+import HeaderFooterContent from "../models/headerFooterContent.js";
 import { Request, Response } from "express";
 
 // Get all header footer content
