@@ -1,11 +1,15 @@
 import mongoose from "mongoose";
-import { optional } from "zod";
+
 const Schema = mongoose.Schema;
 
 const heroContentSchema = new Schema({
   sectionType: {
     type: String,
     required: true,
+  },
+  morals: {
+    type: [Object],
+    optional: true,
   },
   title: {
     type: String,
@@ -21,7 +25,11 @@ const heroContentSchema = new Schema({
   },
   buttonText: {
     type: String,
-    required: true,
+    optional: true,
+  },
+  buttonSubText: {
+    type: String,
+    optional: true,
   },
   image: {
     type: String,
@@ -29,7 +37,11 @@ const heroContentSchema = new Schema({
   },
   link: {
     type: String,
-    required: true,
+    optional: true,
+  },
+  features: {
+    type: [String],
+    optional: true,
   },
 });
 
