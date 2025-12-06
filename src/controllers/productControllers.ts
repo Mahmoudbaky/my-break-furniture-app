@@ -83,7 +83,7 @@ export const filterProducts = async (req: Request, res: Response) => {
     const products = await Product.find(filters)
       .skip(skip)
       .limit(Number(limit))
-      .populate("category", "name -_id");
+      .populate("category", "name _id");
 
     const total = await Product.countDocuments(filters);
 
