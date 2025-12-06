@@ -8,6 +8,14 @@ export const router = express.Router();
 // Get main content
 router.get("/all-main-content", mainContentControllers.getMainContent);
 
+// Create main content (only for ADMIN role)
+router.post(
+  "/create-main-content",
+  protect,
+  authorize("admin"),
+  mainContentControllers.createMainContent
+);
+
 // Update main content (only for ADMIN role)
 router.put(
   "/update-main-content/:id",

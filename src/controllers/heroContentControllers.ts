@@ -20,10 +20,10 @@ export const getHeroContent = async (req: Request, res: Response) => {
 
 export const createHeroContent = async (req: Request, res: Response) => {
   try {
-    const { title, subtitle, image, buttonText, link } = req.body;
+    const { title, subTitle, image, buttonText, link } = req.body;
     const newHeroContent = await heroContent.create({
       title,
-      subtitle,
+      subTitle,
       image,
       buttonText,
       link,

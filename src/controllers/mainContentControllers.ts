@@ -1,18 +1,47 @@
-import heroContent from "../models/heroContent.js";
+import MainContent from "../models/mainContent.js";
 import { Request, Response } from "express";
 
 export const getMainContent = async (req: Request, res: Response) => {
   try {
-    const heroContents = await heroContent.find();
+    const mainContents = await MainContent.find();
     res.status(200).json({
       success: true,
-      message: "Hero content fetched successfully",
-      data: heroContents,
+      message: "Main content fetched successfully",
+      data: mainContents,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Error fetching hero content",
+      message: "Error fetching main content",
+      error,
+    });
+  }
+};
+
+// Just For development purposes
+export const createMainContent = async (req: Request, res: Response) => {
+  try {
+    const { name, title, subTitle, image, description, buttonText, link } =
+      req.body;
+    const newMainContent = new MainContent({
+      name,
+      title,
+      subTitle,
+      image,
+      description,
+      buttonText,
+      link,
+    });
+    await newMainContent.save();
+    res.status(201).json({
+      success: true,
+      message: "Main content created successfully",
+      data: newMainContent,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error creating main content",
       error,
     });
   }
@@ -22,7 +51,7 @@ export const updateMainContent = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { title, subtitle, image, description, buttonText, link } = req.body;
-    const updatedHeroContent = await heroContent.findByIdAndUpdate(
+    const updatedMainContent = await MainContent.findByIdAndUpdate(
       id,
       {
         title,
@@ -36,13 +65,13 @@ export const updateMainContent = async (req: Request, res: Response) => {
     );
     res.status(200).json({
       success: true,
-      message: "Hero content updated successfully",
-      data: updatedHeroContent,
+      message: "Main content updated successfully",
+      data: updatedMainContent,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Error updating hero content",
+      message: "Error updating main content",
       error,
     });
   }
