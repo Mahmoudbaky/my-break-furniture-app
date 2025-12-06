@@ -13,6 +13,7 @@ import {
   heroContentRoutes,
   mainContentRoutes,
   aboutusContentRoutes,
+  contactusContentRoutes,
 } from "./routes/index.js";
 import { env } from "./config/env.js";
 import { createRouteHandler } from "uploadthing/express";
@@ -89,6 +90,7 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/hero-content", heroContentRoutes);
 app.use("/api/main-content", mainContentRoutes);
 app.use("/api/aboutus-content", aboutusContentRoutes);
+app.use("/api/contactus-content", contactusContentRoutes);
 
 // Uploadthing routes
 app.use(

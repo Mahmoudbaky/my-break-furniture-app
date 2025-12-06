@@ -10,5 +10,5 @@ export { default as messageRoutes } from "./messageRoutes.js";
 export { default as heroContentRoutes } from "./heroContentRoutes.js";
 export { default as mainContentRoutes } from "./mainContentRoutes.js";
 export { default as aboutusContentRoutes } from "./aboutusContentRoutes.js";
+export { default as contactusContentRoutes } from "./contactusContentRoutes.js";
 // export { default as serviceContentRoutes } from "./serviceContentRoutes.js";
-// export { default as contactContentRoutes } from "./contactContentRoutes.js";
