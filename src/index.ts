@@ -14,6 +14,7 @@ import {
   mainContentRoutes,
   aboutusContentRoutes,
   contactusContentRoutes,
+  headerFooterContentRoutes,
 } from "./routes/index.js";
 import { env } from "./config/env.js";
 import { createRouteHandler } from "uploadthing/express";
@@ -91,6 +92,7 @@ app.use("/api/hero-content", heroContentRoutes);
 app.use("/api/main-content", mainContentRoutes);
 app.use("/api/aboutus-content", aboutusContentRoutes);
 app.use("/api/contactus-content", contactusContentRoutes);
+app.use("/api/headerfooter-content", headerFooterContentRoutes);
 
 // Uploadthing routes
 app.use(
