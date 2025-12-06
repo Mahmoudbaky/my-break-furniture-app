@@ -32,4 +32,12 @@ router.put(
   categoryControllers.updateCategory
 );
 
+// Delete category (only for ADMIN role)
+router.delete(
+  "/delete-category/:categoryId",
+  protect,
+  authorize("admin"),
+  categoryControllers.deleteCategory
+);
+
 export default router;
