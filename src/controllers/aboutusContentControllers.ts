@@ -1,4 +1,4 @@
-import aboutusContent from "../models/aboutusContent";
+import aboutusContent from "../models/aboutusContent.js";
 import { Request, Response } from "express";
 
 export const getAboutUsContent = async (req: Request, res: Response) => {
