@@ -12,4 +12,4 @@ export { default as mainContentRoutes } from "./mainContentRoutes.js";
 export { default as aboutusContentRoutes } from "./aboutusContentRoutes.js";
 export { default as contactusContentRoutes } from "./contactusContentRoutes.js";
 export { default as headerFooterContentRoutes } from "./headerFooterContentRoutes.js";
-// export { default as serviceContentRoutes } from "./serviceContentRoutes.js";
+export { default as reservationContactSettingsRoutes } from "./reservationContactSettingsRoutes.js";
