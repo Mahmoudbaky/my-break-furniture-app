@@ -39,6 +39,7 @@ const app = express();
 const corsOptions = {
   origin: function (origin: string | undefined, callback: Function) {
     const allowedOrigins = [
+      "https://arabic-react1.vercel.app",
       "http://localhost:5173",
       "http://localhost:5174",
       "http://127.0.0.1:5173",
