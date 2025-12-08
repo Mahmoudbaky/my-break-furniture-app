@@ -138,7 +138,6 @@ export const getProductById = async (req: Request, res: Response) => {
 export const updateProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    console.log(id);
 
     const validationResponse = createProductValidationSchema.safeParse(
       req.body
