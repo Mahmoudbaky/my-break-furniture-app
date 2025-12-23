@@ -6,7 +6,10 @@ const f = createUploadthing();
 export const uploadRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   imageUploader: f({
-    image: { maxFileSize: "4MB", maxFileCount: 1 }, // Adjust max file size as needed
+    "image/webp": { maxFileSize: "4MB", maxFileCount: 1 },
+    "image/jpeg": { maxFileSize: "4MB", maxFileCount: 1 },
+    "image/png": { maxFileSize: "4MB", maxFileCount: 1 },
+    "image/gif": { maxFileSize: "4MB", maxFileCount: 1 },
   }).onUploadComplete((data) => {
     console.log("upload completed", data);
   }),
