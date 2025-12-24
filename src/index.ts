@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import express from "express";
 import cors from "cors";
-import swaggerUi from "swagger-ui-express";
 import {
   productRoutes,
   categoryRoutes,
@@ -85,10 +84,49 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Swagger documentation
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
-  customCss: ".swagger-ui .topbar { display: none }",
-  customSiteTitle: "Break Furniture API Documentation",
-}));
+// Use CDN assets for Vercel compatibility (serverless functions can't serve static files from node_modules)
+const swaggerHtml = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Break Furniture API Documentation</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui.css" />
+  <style>
+    .swagger-ui .topbar { display: none }
+  </style>
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui-bundle.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui-standalone-preset.js"></script>
+  <script>
+    window.onload = function() {
+      const spec = ${JSON.stringify(swaggerSpec)};
+      SwaggerUIBundle({
+        spec: spec,
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout",
+        persistAuthorization: true
+      });
+    };
+  </script>
+</body>
+</html>
+`;
+
+app.get("/api-docs", (req, res) => {
+  res.send(swaggerHtml);
+});
+
+app.get("/api-docs.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerSpec);
+});
 
 // API routes
 app.use("/api/auth", authRoutes);
