@@ -1,4 +1,10 @@
 import swaggerJsdoc from "swagger-jsdoc";
+import { join } from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const swaggerDefinition = {
   openapi: "3.0.0",
@@ -94,9 +100,25 @@ const swaggerDefinition = {
   ],
 };
 
+// Determine the correct paths - try both dist (production) and src (development) paths
+// This ensures it works in both local development and Vercel production
+const distRoutesPath = join(__dirname, "../routes/*.js");
+const distIndexPath = join(__dirname, "../index.js");
+const srcRoutesPath = join(__dirname, "../routes/*.ts");
+const srcIndexPath = join(__dirname, "../index.ts");
+
+// Include both patterns - swagger-jsdoc will use whichever files exist
+// This handles both development (src/*.ts) and production (dist/*.js) scenarios
+const apiPaths = [
+  distRoutesPath,
+  distIndexPath,
+  srcRoutesPath,
+  srcIndexPath,
+];
+
 const options = {
   definition: swaggerDefinition,
-  apis: ["./src/routes/*.ts", "./src/index.ts"], // Path to the API routes
+  apis: apiPaths, // Path to the API routes
 };
 
 export const swaggerSpec = swaggerJsdoc(options);

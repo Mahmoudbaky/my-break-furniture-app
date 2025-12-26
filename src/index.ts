@@ -102,9 +102,8 @@ const swaggerHtml = `
   <script src="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui-standalone-preset.js"></script>
   <script>
     window.onload = function() {
-      const spec = ${JSON.stringify(swaggerSpec)};
       SwaggerUIBundle({
-        spec: spec,
+        url: window.location.origin + '/api-docs.json',
         dom_id: '#swagger-ui',
         presets: [
           SwaggerUIBundle.presets.apis,
